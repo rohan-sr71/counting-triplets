@@ -1,0 +1,65 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+ 
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+ 
+public class CountTriplets {
+ 
+    static long countTriplets(List<Long> arr, long r) {
+        long ans = 0;
+        Long[] array = new Long[arr.size()];
+        Map<Long, Long> right = new HashMap<Long, Long>();
+        Map<Long, Long> left = new HashMap<Long, Long>();
+        for (int i = 0; i < arr.size(); i++) {
+            array[i] = arr.get(i);
+            right.put(array[i], 0l);
+            left.put(array[i], 0l);
+        }
+ 
+        for (int i = 0; i < array.length; i++) {
+            Long num = array[i];
+            right.put(num, right.get(num) + 1);
+        }
+ 
+        for (int i = 0; i < array.length; i++) {
+            Long num2 = array[i];
+            right.put(num2, right.get(num2) - 1);
+ 
+            if (num2 % r == 0) {
+                Long num1 = num2 / r;
+                Long num3 = num2 * r;
+ 
+                if (left.containsKey(num1) && right.containsKey(num3)) {
+                    ans += (left.get(num1) * right.get(num3));
+                }
+            }
+ 
+            left.put(num2, left.get(num2) + 1);
+        }
+        
+ 
+        return ans;
+    }
+ 
+    public static void main(String[] args) throws FileNotFoundException {
+        System.setIn(new FileInputStream(System.getProperty("user.home") + "/" + "in_166661666700000_2.txt"));
+ 
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int r = scanner.nextInt();
+        List<Long> arr = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            arr.add(scanner.nextLong());
+        }
+ 
+        System.out.println(countTriplets(arr, r));
+    }
+}
