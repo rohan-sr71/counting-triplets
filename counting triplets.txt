@@ -1,7 +1,5 @@
 import java.util.*;
  
-import static java.util.stream.Collectors.joining;
- 
 public class CountTriplets {
  
     static long countTriplets(List<Long> arr, long r) {
