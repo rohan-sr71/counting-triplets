@@ -1,6 +1,7 @@
 import java.util.*;
  
-public class CountTriplets {
+public class CountTriplets
+{
  
     static long countTriplets(List<Long> arr, long r) {
         long ans = 0;
