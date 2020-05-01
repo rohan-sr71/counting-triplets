@@ -13,7 +13,7 @@ public class CountTriplets
             right.put(array[i], 0l);
             left.put(array[i], 0l);
         }
- //triplets find
+ //triplets find new
         for (int i = 0; i < array.length; i++) {
             Long num = array[i];
             right.put(num, right.get(num) + 1);
